@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
 </head>
-<body background="cloud.jpg">
-script>
+<body>
+	<script>
 		// initialize and setup facebook js sdk
 		window.fbAsyncInit = function() {
 		    FB.init({
@@ -48,24 +51,13 @@ script>
 		// getting basic user info
 		function getInfo() {
 			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
-				document.getElementById('status').innerHTML = response.id;
+				document.getElementById('status').innerHTML = response.name;
 			});
 		}
 	</script>
 
-
-<div>
-<center><h1> Welcome to Harsh's Website </h1><center>
-</div>	
-<br>
-<br>
-<br>
-
-
 	<div id="status"></div>
-           
-	<button onclick="testAPI()">Get Info</button>
-                <button onclick="login()" id="login">Login</button>
-          
+	<button onclick="getInfo()">Get Info</button>
+	<button onclick="login()" id="login">Login</button>
 </body>
 </html>
