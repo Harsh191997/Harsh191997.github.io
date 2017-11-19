@@ -15,15 +15,8 @@
 		      version    : 'v2.11'
 		    });
 		    FB.getLoginStatus(function(response) {
-		    	if (response.status === 'connected') {
-		    		document.getElementById('status').innerHTML = 'We are connected.';
-		    		document.getElementById('login').style.visibility = 'hidden';
-		    	} else if (response.status === 'not_authorized') {
-		    		document.getElementById('status').innerHTML = 'We are not logged in.'
-		    	} else {
-		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-		    	}
-		    });
+	                    statusChangeCallback(response);	   
+                                       });
 		};
 		(function(d, s, id){
 		    var js, fjs = d.getElementsByTagName(s)[0];
@@ -36,15 +29,8 @@
 		// login with facebook with extra permissions
 		function login() {
 			FB.login(function(response) {
-				if (response.status === 'connected') {
-		    		document.getElementById('status').innerHTML = 'We are connected.';
-		    		document.getElementById('login').style.visibility = 'hidden';
-		    	} else if (response.status === 'not_authorized') {
-		    		document.getElementById('status').innerHTML = 'We are not logged in.'
-		    	} else {
-		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-		    	}
-			}, {scope: 'email'});
+				statusChangeCallback(response);
+		}, {scope: 'email'});
 		}
 		
 		// getting basic user info
@@ -84,9 +70,12 @@
 
 
 	<div id="status"></div>
+           <div>
 	<button onclick="getInfo()">Get Info</button>
+          </div>
+           <div>
                 <button onclick="login()" id="login">Login</button>
-
+           </div>
 
 </body>
 </html>
