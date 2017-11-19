@@ -72,8 +72,6 @@
 
  	</script>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
 
 
 
@@ -87,7 +85,11 @@
 
 	<div id="status"></div>
 	<button onclick="getInfo()">Get Info</button>
-	<button onclick="login()" id="login">Login</button>
+                 <br>
+                 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button>
+
+
 
 </body>
 </html>
