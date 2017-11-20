@@ -55,7 +55,7 @@
 			
  			FB.api('/me?fields=name,email,birthday,location', function(response){
 		          if(response && !response.error){
-		              var myname = (JSON.stringify(response));
+		              var myname = (JSON.stringify(response,null,4));
                                                 document.getElementById('name').innerHTML = myname ; 	          
                                                 }
  			})
@@ -83,9 +83,9 @@
                   <br><br>
 	<div id="status" style="font-size:180%" align="center">
               </div>
-                 <div id="name"  style="font-size:180%"> </div>                  
+                 <div id="name" align="center" style="font-size:180%"> </div>                  
 
-	<br><button onclick="getInfo()" align="center">Get Info</button>
+	<br><br><button onclick="getInfo()" align="center">Get Info</button>
 	<button onclick="login()" id="login">Login with Facebook</button>
 </body>
 </html>
