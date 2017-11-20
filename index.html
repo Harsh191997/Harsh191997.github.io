@@ -74,12 +74,11 @@
 
 		}
 
-               function fbLogout() {
-        FB.logout(function (response) {
-            //Do what ever you want here when logged out like reloading the page
-            window.location.reload();
-        });
-    }
+               function logout() {
+            FB.logout(function(response) {
+              // user is now logged out
+            });
+        }
 	</script>
   
 <center><h1> Welcome to Harsh's Website </h1></center>
@@ -95,7 +94,6 @@
 	<div align="center"><button onclick="login()" id="login">Login with Facebook</button></div>
                   <br>
                   <br>
-<span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span>
-
+	<button onclick="javascript:logout();">Logout from Facebook</button>
 </body>
 </html>
