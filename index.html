@@ -38,7 +38,7 @@
 		function login() {
 			FB.login(function(response) {
 				if (response.status === 'connected') {
-		    		document.getElementById('status').innerHTML = 'Welcome '; 
+		    		document.getElementById('status').innerHTML = 'Welcome '+response.id; 
 		    		print_name();
                                                                   document.getElementById('login').style.visibility = 'hidden';
 		    	} else if (response.status === 'not_authorized') {
@@ -85,7 +85,7 @@
                  <div id="name"  style="font-size:180%"></div>                  
 
               </div>
-	<button onclick="getInfo()">Get Info</button>
+	<br><button onclick="getInfo()" align="center">Get Info</button>
 	<button onclick="login()" id="login">Login with Facebook</button>
 </body>
 </html>
