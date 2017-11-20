@@ -11,62 +11,67 @@
 
 
 <script>
-		// initialize and setup facebook js sdk
-		window.fbAsyncInit = function() {
-		    FB.init({
-		      appId      : '176113429638490',
-		      xfbml      : true,
-		      version    : 'v2.11'
-		    });
-		    FB.getLoginStatus(function(response) {
-		    	if (response.status === 'connected') {
-		    		document.getElementById('status').innerHTML = 'We are connected.';
-		    		document.getElementById('login').style.visibility = 'hidden';
-		    	} else if (response.status === 'not_authorized') {
-		    		document.getElementById('status').innerHTML = 'We are not logged in.'
-		    	} else {
-		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-		    	}
-		    });
-		};
-		(function(d, s, id){
-		    var js, fjs = d.getElementsByTagName(s)[0];
-		    if (d.getElementById(id)) {return;}
-		    js = d.createElement(s); js.id = id;
-		    js.src = "//connect.facebook.net/en_US/sdk.js";
-		    fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-		
-		// login with facebook with extra permissions
-		function login() {
-			FB.login(function(response) {
-				if (response.status === 'connected') {
-		    		document.getElementById('status').innerHTML = 'We are connected.';
-		    		document.getElementById('login').style.visibility = 'hidden';
-		    	} else if (response.status === 'not_authorized') {
-		    		document.getElementById('status').innerHTML = 'We are not logged in.'
-		    	} else {
-		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-		    	}
-			}, {scope: 'email'});
-		}
-		
-		// getting basic user info
-		function getInfo() {
-			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
-				document.getElementById('status').innerHTML = response.id;
-			});
-		}
+
+
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '176113429638490', // App ID
+      
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional init code here
+    FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+        // connected
+        replace_login();
+        FB.api('/me', function(response) {
+            console.log('Good to see you, ' + response.name + '.');
+            alert('Good to see you, ' + response.name + '.');
+        });
+    }
+});
+  };
+
+  function login() {
+      FB.login(function(response) {
+          if (response.authResponse) {
+              // connected
+              replace_login();
+              window.location.reload();
+          } else {
+              // cancelled
+              alert('User cancelled login or did not fully authorize.');
+          }
+      });
+  }
+
+  function replace_login(){
+      FB.Event.subscribe('auth.login', function(response) {
+        alert("Logged in.. Redirecting you now...");
+         window.location = "harsh191997.github.io/first.html";
+        
+    });
+  }
+
+  // Load the SDK Asynchronously
+  (function(d){
+       var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement('script'); js.id = id; js.async = true;
+       js.src = "//connect.facebook.net/en_US/all.js";
+       ref.parentNode.insertBefore(js, ref);
+   }(document));
+
 	</script>
 
-    <fb:login-button  data-size="large"   scope="public_profile,email" onlogin="window.location='harsh191997.github.io/first.html'">
-</fb:login-button>
 
                   
                  <div id="status"></div>
-	<button onclick="getInfo()">Get Info</button>
-                  </br></br>
-	
+	<br><br><br>
+                <button onclick="login();">Login with Facebook</button>
 
 </body>
 </html>
