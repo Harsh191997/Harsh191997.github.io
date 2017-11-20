@@ -7,7 +7,10 @@
 	<link rel="stylesheet" href="">
 </head>
 <body background="cloud.jpg">
-	<script>
+
+
+
+<script>
 		// initialize and setup facebook js sdk
 		window.fbAsyncInit = function() {
 		    FB.init({
@@ -55,10 +58,15 @@
 			});
 		}
 	</script>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
                   
                  <div id="status"></div>
 	<button onclick="getInfo()">Get Info</button>
                   </br></br>
-	<fb:login-button perms="email,publish_stream,about_me" onlogin="window.location='/harsh191997.github.io/success.jsp'"></fb:login-button>
+	
+
 </body>
 </html>
