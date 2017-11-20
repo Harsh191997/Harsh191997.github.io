@@ -39,12 +39,7 @@
 			FB.login(function(response) {
 				if (response.status === 'connected') {
 		    		document.getElementById('status').innerHTML = 'Welcome '; 
-		    		
-				FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
-				document.getElementById('name').innerHTML = response.name;
-			});
-
-
+		    		print_name();
                                                                   document.getElementById('login').style.visibility = 'hidden';
 		    	} else if (response.status === 'not_authorized') {
 		    		document.getElementById('status').innerHTML = 'We are not logged in.'
@@ -53,7 +48,20 @@
 		    	}
 			}, {scope: 'email'});
 		}
-		
+ 	
+                                    function print_name()
+			{
+
+                                                      FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
+				document.getElementById('name').innerHTML = response.name;
+			});
+
+
+
+			}
+
+
+	
 		// getting basic user info
 		function getInfo() {
 			
