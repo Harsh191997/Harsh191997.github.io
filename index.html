@@ -39,7 +39,7 @@ window.fbAsyncInit = function() {
       FB.login(function(response) {
           if (response.authResponse) {
               // connected
-              replace_login();
+              
               window.location.reload();
           } else {
               // cancelled
