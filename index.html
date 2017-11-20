@@ -38,8 +38,9 @@
 		function login() {
 			FB.login(function(response) {
 				if (response.status === 'connected') {
-		    		document.getElementById('status').innerHTML = 'Welcome '+$(response.name);
-		    		document.getElementById('login').style.visibility = 'hidden';
+		    		document.getElementById('status').innerHTML = 'Welcome '; 
+		    		document.getElementById('name').innerHTML = response.name; 
+                                                                  document.getElementById('login').style.visibility = 'hidden';
 		    	} else if (response.status === 'not_authorized') {
 		    		document.getElementById('status').innerHTML = 'We are not logged in.'
 		    	} else {
@@ -67,7 +68,10 @@
 <center><h1> Welcome to Harsh's Website </h1></center>
 
                   <br><br>
-	<div id="status" style="font-size:180%" align="center"></div>
+	<div id="status" style="font-size:180%" align="center">
+                 <div id="name"  style="font-size:180%"></div>                  
+
+              </div>
 	<button onclick="getInfo()">Get Info</button>
 	<button onclick="login()" id="login">Login with Facebook</button>
 </body>
