@@ -39,21 +39,23 @@
 			FB.login(function(response) {
 				if (response.status === 'connected') {
 		    		document.getElementById('status').innerHTML = "Welcome" ;
-			                 document.getElementById('login').style.visibility = 'hidden';
+			                 print_name();
+              				document.getElementById('login').style.visibility = 'hidden';
 		    	} else if (response.status === 'not_authorized') {
 		    		document.getElementById('status').innerHTML = 'We are not logged in.'
 		    	} else {
 		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
 		    	}
 			}, {scope: 'email'});
-                                                      print_name();		
+                                                      		
 }
  	
 		function print_name() {
 			
  			FB.api('/me?fields=name,email,birthday,location', function(response){
 		          if(response && !response.error){
-		              document.getElementById('name').innerHTML = JSON.stringify(response, null, 4)
+		              var json = JSON.stringify(response, null, 4);
+                                                 document.getElementById('name').innerHTML = json;
                                                 }
  			})
 
